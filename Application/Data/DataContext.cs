@@ -24,40 +24,38 @@ namespace Application.Data
 
             // This will read the asset data.
             var assetData = File.ReadAllText($"{_path}/Data/Seed/assets.json");
-            // var assetData = File.ReadAllText($"D:/source/repos/LightningAlert/Application/Data/Seed/assets.json");
             // This will deserialize the json data.
             dynamic assets = JsonConvert.DeserializeObject(assetData);
             // This will map the deserialized json data to a collection of Asset objects.
-            foreach (var asset in assets)
+            foreach (var item in assets)
             {
                 Assets.Add(new Asset
                 {
-                    AssetName = asset["assetName"].ToString(),
-                    QuadKey = asset["quadKey"].ToString(),
-                    AssetOwner = asset["assetOwner"].ToString()
+                    AssetName = item["assetName"].ToString(),
+                    QuadKey = item["quadKey"].ToString(),
+                    AssetOwner = item["assetOwner"].ToString()
                 });
             }
 
             // This will read the lightning data.
             var strikeData = File.ReadAllText($"{_path}/Data/Seed/lightning.json");
-            // var strikeData = File.ReadAllText($"D:/source/repos/LightningAlert/Application/Data/Seed/lightning.json");
             // This will deserialize the json data.
             dynamic strikes = JsonConvert.DeserializeObject(strikeData);
             // This will map the deserialized json data to a collection of Strike objects.
-            foreach (var strike in strikes)
+            foreach (var item in strikes)
             {
                 Strikes.Add(new Strike
                 {
-                    FlashType = (FlashType)strike["flashType"],
-                    StrikeTime = Convert.ToInt64(strike["strikeTime"]),
-                    Latitude = Convert.ToDouble(strike["latitude"]),
-                    Longitude = Convert.ToDouble(strike["longitude"]),
-                    PeakAmps = Convert.ToInt32(strike["peakAmps"]),
-                    Reserved = strike["reserved"].ToString(),
-                    ICHeight = Convert.ToInt32(strike["icHeight"]),
-                    ReceivedTime = Convert.ToInt64(strike["receivedTime"]),
-                    NumberOfSensors = Convert.ToInt32(strike["numberOfSensors"]),
-                    Multiplicity = Convert.ToInt32(strike["multiplicity"])
+                    FlashType = (FlashType)item["flashType"],
+                    StrikeTime = Convert.ToInt64(item["strikeTime"]),
+                    Latitude = Convert.ToDouble(item["latitude"]),
+                    Longitude = Convert.ToDouble(item["longitude"]),
+                    PeakAmps = Convert.ToInt32(item["peakAmps"]),
+                    Reserved = item["reserved"].ToString(),
+                    ICHeight = Convert.ToInt32(item["icHeight"]),
+                    ReceivedTime = Convert.ToInt64(item["receivedTime"]),
+                    NumberOfSensors = Convert.ToInt32(item["numberOfSensors"]),
+                    Multiplicity = Convert.ToInt32(item["multiplicity"])
                 });
             }
         }
